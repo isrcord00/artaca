@@ -15,8 +15,8 @@ Operación **100 % gratuita** (hosting, formulario y blog sin costo).
 | Framework | [Astro](https://astro.build) |
 | Estilos | [Tailwind CSS v4](https://tailwindcss.com) (plugin Vite) |
 | Formulario | Web3Forms (integrado — configurar `PUBLIC_WEB3FORMS_KEY` en `.env`) |
-| Blog | Colecciones Markdown de Astro (por integrar — F4) |
-| Deploy | Cloudflare Pages (por configurar — F6) |
+| Blog | Colecciones Markdown de Astro + RSS (`/rss.xml`) ✅ |
+| Deploy | Cloudflare Pages — guía completa en [`DEPLOY.md`](./DEPLOY.md) |
 
 ## Estilo: Dark Neon
 
@@ -82,12 +82,16 @@ artesania-tauro/
 > 🔑 **Para activar el formulario:** copia `.env.example` como `.env`, crea una clave
 > gratuita en [web3forms.com](https://web3forms.com) (con el correo del cliente) y pégala
 > en `PUBLIC_WEB3FORMS_KEY`. El archivo `.env` no se sube al repositorio.
-- [ ] **F3** — Catálogo completo con filtros
-- [ ] **F4** — Blog/Noticias con Markdown y RSS
-- [ ] **F5** — SEO avanzado (Open Graph, sitemap, schema LocalBusiness)
-- [ ] **F6** — Deploy en Cloudflare Pages
-- [ ] **F7** — QA responsive + Lighthouse
-- [ ] **F8** — Presentación al cliente
+- [x] **F3** — Catálogo completo (13 productos, filtros, páginas de detalle)
+- [x] **F4** — Blog/Noticias con Markdown, listado, post y RSS
+- [x] **F5** — SEO (sitemap, robots.txt, canonical, Open Graph, JSON-LD)
+- [x] **F6** — Git inicializado + guía de despliegue ([`DEPLOY.md`](./DEPLOY.md))
+- [x] **F7** — QA: build de 22 páginas y verificación de enlaces internos
+- [x] **F8** — Propuesta comercial (`../propuesta-cliente.md`)
+
+**Pendiente del usuario:** crear la clave Web3Forms, subir a GitHub,
+desplegar en Cloudflare Pages (pasos en `DEPLOY.md`) y confirmar datos del
+cliente (WhatsApp, horarios, fotos reales).
 
 ## Convenciones
 
