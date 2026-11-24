@@ -6,6 +6,8 @@ venta al mayor y detal de calzado tejido artesanal — alpargatas, cocuizas y bo
 Proyecto demo para oferta en Workana + proyecto personal de portfolio.
 Operación **100 % gratuita** (hosting, formulario y blog sin costo).
 
+**Repositorio:** https://github.com/isrcord00/artaca
+
 > 📋 El plan de trabajo completo (investigación, fases, design system) está en `../plan.md`.
 
 ## Stack
