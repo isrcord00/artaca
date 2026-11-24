@@ -23,14 +23,6 @@ const relacionados = productos
   .filter((p) => p.categoria === producto.categoria && p.id !== producto.id)
   .slice(0, 3);
 
-// Degradado del placeholder visual según la categoría
-const degradados = {
-  Alpargatas: 'from-neon-cian/30 to-neon-violeta/30',
-  Cocuizas: 'from-neon-magenta/30 to-neon-violeta/30',
-  Bolsos: 'from-neon-violeta/30 to-neon-cian/30',
-  Accesorios: 'from-neon-cian/20 to-neon-magenta/30',
-};
-const degradado = degradados[producto.categoria] ?? degradados['Accesorios'];
 ---
 
 <Base
@@ -46,11 +38,15 @@ const degradado = degradados[producto.categoria] ?? degradados['Accesorios'];
 
   <!-- Detalle del producto -->
   <section class="mx-auto grid max-w-6xl gap-10 px-4 py-12 lg:grid-cols-2">
-    <!-- Placeholder visual grande (reemplazar por foto real del producto) -->
-    <div class={`flex h-96 items-center justify-center rounded-xl bg-linear-to-br ${degradado}`}>
-      <span class="font-display px-6 text-center text-3xl font-bold uppercase tracking-widest text-texto/70">
-        {producto.nombre}
-      </span>
+    <!-- Foto del producto (provisional, generada con IA) -->
+    <div class="overflow-hidden rounded-xl border border-borde">
+      <img
+        src={`/images/productos/${producto.id}.jpg`}
+        alt={`Foto de ${producto.nombre} — Artesanía Tauro, C.A.`}
+        width="800"
+        height="800"
+        class="aspect-square w-full object-cover"
+      />
     </div>
 
     <!-- Información y compra -->

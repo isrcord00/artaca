@@ -48,7 +48,12 @@ npm run preview
 
 ```
 artesania-tauro/
-├── public/                  # Archivos estáticos (favicon, imágenes futuras)
+├── public/                  # Archivos estáticos
+│   └── images/              # Imágenes provisionales generadas con IA
+│       ├── productos/       # Foto por producto (800×800, ~185 KB c/u)
+│       ├── blog/            # Portadas de entradas (1280×720)
+│       ├── og.jpg           # Imagen para compartir (1200×600)
+│       └── taller.jpg       # Foto del taller para «Nosotros»
 ├── src/
 │   ├── components/          # Componentes reutilizables
 │   │   ├── Header.astro     # Navegación responsive (CSS-only)

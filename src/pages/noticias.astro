@@ -41,7 +41,18 @@ const formatoFecha = new Intl.DateTimeFormat('es-VE', { dateStyle: 'long' });
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         entradas.map((entrada) => (
-          <article class="panel-cristal flex flex-col rounded-xl p-6 transition duration-200 hover:-translate-y-1 hover:border-neon-magenta/60">
+          <article class="panel-cristal flex flex-col overflow-hidden rounded-xl transition duration-200 hover:-translate-y-1 hover:border-neon-magenta/60">
+            <a href={`/noticias/${entrada.id}/`} aria-hidden="true" tabindex="-1">
+              <img
+                src={`/images/blog/${entrada.id}.jpg`}
+                alt=""
+                width="1280"
+                height="720"
+                loading="lazy"
+                class="aspect-video w-full object-cover"
+              />
+            </a>
+            <div class="flex flex-1 flex-col p-6">
             {/* Etiqueta y fecha de publicación */}
             <div class="flex items-center justify-between gap-3 text-xs">
               {entrada.data.etiqueta && (
@@ -67,6 +78,7 @@ const formatoFecha = new Intl.DateTimeFormat('es-VE', { dateStyle: 'long' });
             <a href={`/noticias/${entrada.id}/`} class="mt-4 inline-block text-sm text-neon-cian">
               Leer más →
             </a>
+            </div>
           </article>
         ))
       }

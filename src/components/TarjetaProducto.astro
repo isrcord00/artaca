@@ -2,24 +2,13 @@
 // =============================================================
 // Tarjeta de producto para el catálogo.
 // Enlaza a la página de detalle del producto (/catalogo/[id]/).
-// Muestra un placeholder visual con degradado según la categoría;
-// se reemplazará por fotos reales cuando el cliente las entregue.
+// Muestra una foto provisional generada con IA; se reemplazará
+// por fotos reales cuando el cliente las entregue.
 // Props:
 //   - producto: objeto con { id, nombre, categoria, descripcion, destacado }
 // =============================================================
-import BotonNeon from './BotonNeon.astro';
 
 const { producto } = Astro.props;
-
-// Degradado de la imagen placeholder según categoría del producto
-const degradados = {
-  Alpargatas: 'from-neon-cian/30 to-neon-violeta/30',
-  Cocuizas: 'from-neon-magenta/30 to-neon-violeta/30',
-  Bolsos: 'from-neon-violeta/30 to-neon-cian/30',
-  Accesorios: 'from-neon-cian/20 to-neon-magenta/30',
-};
-
-const degradado = degradados[producto.categoria] ?? degradados['Accesorios'];
 ---
 
 <a
@@ -27,14 +16,15 @@ const degradado = degradados[producto.categoria] ?? degradados['Accesorios'];
   class="panel-cristal group block overflow-hidden rounded-xl transition duration-200 hover:-translate-y-1 hover:border-neon-cian/60"
   aria-label={`Ver detalle de ${producto.nombre}`}
 >
-  <!-- Placeholder visual (reemplazar por <img> con foto real en la entrega final) -->
-  <div class={`flex h-44 items-center justify-center bg-linear-to-br ${degradado}`}>
-    <span
-      class="font-display px-4 text-center text-2xl font-bold uppercase tracking-widest text-texto/70"
-    >
-      {producto.nombre}
-    </span>
-  </div>
+  <!-- Foto provisional generada con IA (reemplazar por foto real del cliente) -->
+  <img
+    src={`/images/productos/${producto.id}.jpg`}
+    alt={`Foto de ${producto.nombre} — Artesanía Tauro, C.A.`}
+    width="800"
+    height="800"
+    loading="lazy"
+    class="h-44 w-full object-cover transition duration-300 group-hover:scale-105"
+  />
 
   <!-- Información del producto -->
   <div class="p-5">

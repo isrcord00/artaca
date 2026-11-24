@@ -53,6 +53,16 @@ const formatoFecha = new Intl.DateTimeFormat('es-VE', { dateStyle: 'long' });
       </h1>
     </header>
 
+    <!-- Imagen de portada provisional (generada con IA) -->
+    <img
+      src={`/images/blog/${entrada.id}.jpg`}
+      alt={`Portada: ${entrada.data.titulo}`}
+      width="1280"
+      height="720"
+      loading="lazy"
+      class="mt-8 aspect-video w-full rounded-xl border border-borde object-cover"
+    />
+
     <!-- Cuerpo de la entrada (Markdown renderizado) -->
     <div class="contenido-noticia mt-8">
       <Content />

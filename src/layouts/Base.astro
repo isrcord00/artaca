@@ -16,6 +16,9 @@ const {
 
 // URL canónica de la página (evita contenido duplicado en buscadores)
 const urlCanonica = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
+
+// Imagen para compartir en redes sociales (Open Graph / Twitter)
+const imagenCompartir = Astro.site ? new URL('images/og.jpg', Astro.site).href : '/images/og.jpg';
 ---
 
 <!doctype html>
@@ -36,6 +39,9 @@ const urlCanonica = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : 
     <meta property="og:description" content={descripcion} />
     <meta property="og:type" content="website" />
     {urlCanonica && <meta property="og:url" content={urlCanonica} />}
+    <meta property="og:image" content={imagenCompartir} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={imagenCompartir} />
 
     <!-- Tipografías: Orbitron (títulos) e Inter (cuerpo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
