@@ -5,22 +5,15 @@ y dominio demo incluido. Tiempo estimado: **15 minutos**.
 
 ---
 
-## Paso 1 — Subir el código a GitHub
+## Paso 1 — Subir el código a GitHub ✅ (hecho)
 
-```bash
-# Dentro de la carpeta artesania-tauro/
-git remote add origin https://github.com/TU-USUARIO/artesania-tauro.git
-git push -u origin main
-```
-
-> Si no tienes cuenta de GitHub, créala gratis en https://github.com
-> y luego crea un repositorio nuevo llamado `artesania-tauro` (público o privado).
+Repositorio ya publicado en: **https://github.com/isrcord00/artaca**
 
 ## Paso 2 — Crear el proyecto en Cloudflare Pages
 
 1. Crea una cuenta gratis en https://dash.cloudflare.com (sign-up).
 2. Ve a **Workers & Pages → Create → Pages → Connect to Git**.
-3. Autoriza GitHub y selecciona el repositorio `artesania-tauro`.
+3. Autoriza GitHub y selecciona el repositorio `artaca`.
 
 ## Paso 3 — Configuración de compilación
 
@@ -37,16 +30,18 @@ En **Settings → Environment variables**, agrega (para *Production* y *Preview*
 | Nombre | Valor |
 |---|---|
 | `PUBLIC_WEB3FORMS_KEY` | tu access key de https://web3forms.com |
+| `NODE_VERSION` | `20` |
 
 > ⚠️ Importante: crea la clave de Web3Forms con el **correo del cliente**
 > para que los mensajes le lleguen directamente a su casilla.
+> `NODE_VERSION=20` garantiza que el build use una versión moderna de Node.
 
 ## Paso 5 — ¡Desplegar!
 
 Presiona **Save and Deploy**. En ~2 minutos el sitio estará en línea en:
 
 ```
-https://artesania-tauro.pages.dev
+https://artaca.pages.dev
 ```
 
 Cada `git push` a `main` actualizará el sitio automáticamente.

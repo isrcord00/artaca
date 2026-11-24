@@ -11,8 +11,9 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // URL pública del sitio (subdominio demo de Cloudflare Pages)
-  site: 'https://artesania-tauro.pages.dev',
+  // URL pública del sitio (subdominio demo de Cloudflare Pages;
+  // se actualizará al dominio final cuando el cliente lo contrate)
+  site: 'https://artaca.pages.dev',
 
   // Integraciones: sitemap.xml automático para buscadores
   integrations: [sitemap()],
