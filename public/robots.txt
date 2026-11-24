@@ -1,0 +1,6 @@
+# Permitimos el rastreo completo a todos los buscadores
+User-agent: *
+Allow: /
+
+# Mapa del sitio generado por Astro (@astrojs/sitemap)
+Sitemap: https://artesania-tauro.pages.dev/sitemap-index.xml

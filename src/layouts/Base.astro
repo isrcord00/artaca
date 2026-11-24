@@ -1,0 +1,58 @@
+---
+// =============================================================
+// Layout base — usado por todas las páginas del sitio.
+// Incluye: metadatos SEO, Open Graph, URL canónica, tipografías,
+// encabezado y pie de página.
+// =============================================================
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Props opcionales para personalizar el SEO de cada página
+const {
+  titulo = 'Artesanía Tauro, C.A. | Calzado tejido artesanal',
+  descripcion = 'Venta al mayor y detal de calzado tejido artesanal en Barquisimeto, Venezuela. Alpargatas, cocuizas y bolsos hechos a mano.',
+} = Astro.props;
+
+// URL canónica de la página (evita contenido duplicado en buscadores)
+const urlCanonica = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0b14" />
+
+    <!-- SEO básico -->
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <meta name="generator" content={Astro.generator} />
+    {urlCanonica && <link rel="canonical" href={urlCanonica} />}
+
+    <!-- Open Graph (compartir en redes sociales) -->
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:type" content="website" />
+    {urlCanonica && <meta property="og:url" content={urlCanonica} />}
+
+    <!-- Tipografías: Orbitron (títulos) e Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Espacio para etiquetas <head> adicionales definidas por cada página -->
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-base font-cuerpo text-texto antialiased">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+// =============================================================
+// Mapa de ubicación de la empresa (Google Maps embebido).
+// Se usa el formato «output=embed» que no requiere API key.
+// ⚠️ PENDIENTE: confirmar el pin exacto con el cliente (plan.md §8);
+//    el Plus Code proviene de directorios públicos.
+// =============================================================
+const consulta = encodeURIComponent('3M98+VWH Barquisimeto, Lara, Venezuela');
+const urlMapa = `https://www.google.com/maps?q=${consulta}&output=embed`;
+---
+
+<div class="panel-cristal overflow-hidden rounded-xl">
+  <iframe
+    src={urlMapa}
+    title="Mapa de ubicación de Artesanía Tauro, C.A. en Barquisimeto, Lara, Venezuela"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+    class="h-80 w-full border-0"
+  >
+  </iframe>
+</div>

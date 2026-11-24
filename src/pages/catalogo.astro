@@ -1,0 +1,97 @@
+---
+// =============================================================
+// Página «Catálogo» — grid completo de productos con filtros
+// por categoría (filtrado en el cliente, sin recargar la página).
+// =============================================================
+import Base from '../layouts/Base.astro';
+import TarjetaProducto from '../components/TarjetaProducto.astro';
+import productos from '../data/productos.json';
+
+// Categorías únicas, derivadas de los datos (orden de aparición)
+const categorias = [...new Set(productos.map((producto) => producto.categoria))];
+---
+
+<Base
+  titulo="Catálogo | Artesanía Tauro, C.A."
+  descripcion="Catálogo de alpargatas, cocuizas, bolsos y accesorios tejidos a mano. Venta al mayor y detal — Barquisimeto, Venezuela."
+>
+  <!-- Encabezado de la página -->
+  <section class="fondo-rejilla relative overflow-hidden py-20 text-center">
+    <div
+      class="pointer-events-none absolute -top-20 left-1/4 h-72 w-72 rounded-full bg-neon-magenta/10 blur-[100px]"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative mx-auto max-w-4xl px-4">
+      <p class="font-display text-xs tracking-[0.35em] text-neon-magenta uppercase">
+        Alpargatas · Cocuizas · Bolsos · Accesorios
+      </p>
+      <h1 class="mt-4 font-display text-3xl font-bold uppercase md:text-5xl">
+        <span class="texto-degradado">Catálogo</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-texto-suave">
+        Todo nuestro trabajo artesanal. Precios y disponibilidad por consultar:
+        vendemos al mayor para comercios y al detal para el público.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filtros por categoría -->
+  <section class="mx-auto max-w-6xl px-4 pb-20">
+    <div
+      id="filtros-categoria"
+      role="group"
+      aria-label="Filtrar productos por categoría"
+      class="flex flex-wrap justify-center gap-3"
+    >
+      <button type="button" class="filtro-boton activo" data-categoria="todos">Todos</button>
+      {categorias.map((categoria) => <button type="button" class="filtro-boton" data-categoria={categoria}>{categoria}</button>)}
+    </div>
+
+    <!-- Grid de productos: cada tarjeta lleva su categoría para el filtrado -->
+    <div id="grid-catalogo" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        productos.map((producto) => (
+          <div data-categoria={producto.categoria}>
+            <TarjetaProducto producto={producto} />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Mensaje si una categoría no tiene productos visibles -->
+    <p id="sin-resultados" class="mt-10 hidden text-center text-texto-suave">
+      No hay productos en esta categoría todavía. ¡Escríbenos y lo tejemos para ti!
+    </p>
+  </section>
+</Base>
+
+<script>
+  // -------------------------------------------------------------
+  // Filtrado del catálogo por categoría (sin JavaScript de framework:
+  // solo se ocultan/muestran las tarjetas según el botón activo).
+  // -------------------------------------------------------------
+  const botones = document.querySelectorAll<HTMLButtonElement>('.filtro-boton');
+  const tarjetas = document.querySelectorAll<HTMLElement>('#grid-catalogo > [data-categoria]');
+  const sinResultados = document.getElementById('sin-resultados');
+
+  botones.forEach((boton) => {
+    boton.addEventListener('click', () => {
+      // Marcamos el botón activo
+      botones.forEach((b) => b.classList.toggle('activo', b === boton));
+
+      // Mostramos/ocultamos tarjetas según la categoría elegida
+      const categoria = boton.dataset.categoria;
+      let visibles = 0;
+
+      tarjetas.forEach((tarjeta) => {
+        const mostrar = categoria === 'todos' || tarjeta.dataset.categoria === categoria;
+        tarjeta.classList.toggle('hidden', !mostrar);
+        if (mostrar) visibles += 1;
+      });
+
+      // Aviso cuando la categoría no tiene productos
+      sinResultados?.classList.toggle('hidden', visibles > 0);
+    });
+  });
+</script>

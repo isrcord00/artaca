@@ -1,0 +1,201 @@
+/* =============================================================
+   Artesanía Tauro, C.A. — Hoja de estilos global
+   Design System «Dark Neon»
+   -------------------------------------------------------------
+   Tailwind CSS v4 (enfoque CSS-first): los tokens definidos
+   dentro de @theme generan utilidades automáticamente.
+   Ejemplos:
+     --color-neon-cian  →  text-neon-cian, bg-neon-cian, border-neon-cian
+     --font-display     →  font-display
+     --shadow-glow-cian →  shadow-glow-cian
+   ============================================================= */
+
+@import "tailwindcss";
+
+@theme {
+  /* ---------- Paleta Dark Neon ---------- */
+  --color-base: #0b0b14;          /* Fondo principal (negro azulado profundo) */
+  --color-superficie: #12121f;    /* Superficie de cards y paneles */
+  --color-superficie-2: #1a1b2e;  /* Superficie elevada / estados hover */
+  --color-borde: #2a2b45;         /* Bordes sutiles entre secciones */
+
+  --color-neon-cian: #00f0ff;     /* Neón primario: acciones y enlaces */
+  --color-neon-magenta: #ff2ed1;  /* Neón de acento: etiquetas y destacados */
+  --color-neon-violeta: #8a2be2;  /* Neón de apoyo: degradados y halos */
+
+  --color-texto: #e8e8f0;         /* Texto principal */
+  --color-texto-suave: #9ca3af;   /* Texto secundario / descripciones */
+
+  /* ---------- Tipografías ---------- */
+  --font-display: "Orbitron", "Rajdhani", ui-sans-serif, system-ui, sans-serif;
+  --font-cuerpo: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---------- Sombras de resplandor (glow) ---------- */
+  --shadow-glow-cian: 0 0 12px rgba(0, 240, 255, 0.45), 0 0 36px rgba(0, 240, 255, 0.18);
+  --shadow-glow-magenta: 0 0 12px rgba(255, 46, 209, 0.45), 0 0 36px rgba(255, 46, 209, 0.18);
+}
+
+/* ================= Estilos base ================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-texto);
+  font-family: var(--font-cuerpo);
+}
+
+/* Fondo decorativo: rejilla neón sutil (usada en hero y secciones) */
+.fondo-rejilla {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+/* ================= Utilidades de marca ================= */
+
+/* Texto con resplandor neón */
+.texto-glow-cian    { text-shadow: 0 0 8px rgba(0, 240, 255, 0.8), 0 0 24px rgba(0, 240, 255, 0.4); }
+.texto-glow-magenta { text-shadow: 0 0 8px rgba(255, 46, 209, 0.8), 0 0 24px rgba(255, 46, 209, 0.4); }
+
+/* Degradado de marca para títulos (cian → violeta → magenta) */
+.texto-degradado {
+  background: linear-gradient(90deg, var(--color-neon-cian), var(--color-neon-violeta), var(--color-neon-magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Panel de cristal (glassmorphism) sobre fondo oscuro */
+.panel-cristal {
+  background: rgba(18, 18, 31, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-borde);
+}
+
+/* ================= Componentes: botones ================= */
+
+@layer components {
+  /* Botón principal: relleno cian con glow */
+  .boton-neon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-base);
+    background: var(--color-neon-cian);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-glow-cian);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .boton-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.6), 0 0 48px rgba(0, 240, 255, 0.3);
+  }
+
+  /* Botón secundario: borde magenta translúcido */
+  .boton-fantasma {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-neon-magenta);
+    border: 1px solid var(--color-neon-magenta);
+    border-radius: 0.5rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .boton-fantasma:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 46, 209, 0.1);
+  }
+}
+
+/* ================= Componentes: filtros del catálogo ================= */
+
+@layer components {
+  /* Botón de filtro por categoría (página Catálogo) */
+  .filtro-boton {
+    padding: 0.5rem 1.25rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+    background: transparent;
+    border: 1px solid var(--color-borde);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .filtro-boton:hover {
+    color: var(--color-neon-cian);
+    border-color: rgba(0, 240, 255, 0.5);
+  }
+  /* Estado activo del filtro seleccionado */
+  .filtro-boton.activo {
+    color: var(--color-base);
+    background: var(--color-neon-cian);
+    border-color: var(--color-neon-cian);
+    box-shadow: var(--shadow-glow-cian);
+  }
+}
+
+/* ================= Componentes: contenido de noticias ================= */
+
+/* Estilos de lectura para el cuerpo de cada entrada del blog */
+.contenido-noticia h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-texto);
+}
+.contenido-noticia h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+.contenido-noticia p,
+.contenido-noticia ul,
+.contenido-noticia ol {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  color: var(--color-texto-suave);
+}
+.contenido-noticia ul { list-style: disc; padding-left: 1.5rem; }
+.contenido-noticia ol { list-style: decimal; padding-left: 1.5rem; }
+.contenido-noticia strong { color: var(--color-texto); }
+.contenido-noticia a { color: var(--color-neon-cian); text-decoration: underline; }
+.contenido-noticia blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-neon-cian);
+  color: var(--color-texto-suave);
+  font-style: italic;
+}
+
+/* ================= Accesibilidad ================= */
+
+/* Respeto por usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,89 @@
+---
+// =============================================================
+// Pie de página con los datos de contacto reales de la empresa.
+// (Fuente: investigación en plan.md — pendiente confirmar con cliente)
+// =============================================================
+const anio = new Date().getFullYear();
+
+const contacto = {
+  direccion:
+    'Carrera 24 entre Calles 41 y 42, Edificio La Alpargata, Barquisimeto 3001, Lara, Venezuela',
+  telefonos: [
+    { etiqueta: '+58 251-4468866', tel: '+582514468866' },
+    { etiqueta: '+58 251-4469065', tel: '+582514469065' },
+  ],
+  email: 'artesania_tauro@hotmail.com',
+  facebook: 'https://www.facebook.com/ArtesaniaTauroCa',
+};
+
+const enlaces = [
+  { texto: 'Inicio', ruta: '/' },
+  { texto: 'Nosotros', ruta: '/nosotros/' },
+  { texto: 'Catálogo', ruta: '/catalogo/' },
+  { texto: 'Noticias', ruta: '/noticias/' },
+  { texto: 'Contacto', ruta: '/contacto/' },
+  { texto: 'RSS de noticias', ruta: '/rss.xml' },
+];
+---
+
+<footer class="border-t border-borde bg-superficie">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3">
+    <!-- Marca -->
+    <div>
+      <p class="font-display text-lg font-bold tracking-widest">
+        ARTESANÍA <span class="text-neon-cian texto-glow-cian">TAURO</span>
+      </p>
+      <p class="mt-3 text-sm leading-relaxed text-texto-suave">
+        Venta al mayor y detal de calzado tejido artesanal. Especialidad en alpargatas,
+        cocuizas y bolsos hechos a mano en Barquisimeto, Venezuela.
+      </p>
+    </div>
+
+    <!-- Datos de contacto -->
+    <div>
+      <h3 class="font-display text-sm tracking-[0.25em] text-neon-magenta uppercase">Contacto</h3>
+      <ul class="mt-3 space-y-2 text-sm text-texto-suave">
+        <li>📍 {contacto.direccion}</li>
+        <li>
+          📞 {
+            contacto.telefonos.map((tel, i) => (
+              <>
+                <a href={`tel:${tel.tel}`} class="hover:text-neon-cian">{tel.etiqueta}</a>
+                {i < contacto.telefonos.length - 1 && ' · '}
+              </>
+            ))
+          }
+        </li>
+        <li>
+          ✉️ <a href={`mailto:${contacto.email}`} class="hover:text-neon-cian">{contacto.email}</a>
+        </li>
+        <li>
+          📘 <a href={contacto.facebook} target="_blank" rel="noopener noreferrer" class="hover:text-neon-cian">
+            Facebook: Artesanía Tauro, C.A.
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Navegación rápida -->
+    <div>
+      <h3 class="font-display text-sm tracking-[0.25em] text-neon-magenta uppercase">Navegación</h3>
+      <ul class="mt-3 space-y-2 text-sm text-texto-suave">
+        {
+          enlaces.map((enlace) => (
+            <li>
+              <a href={enlace.ruta} class="hover:text-neon-cian">
+                {enlace.texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <!-- Línea legal -->
+  <div class="border-t border-borde px-4 py-4 text-center text-xs text-texto-suave">
+    © {anio} Artesanía Tauro, C.A. — Todos los derechos reservados.
+  </div>
+</footer>

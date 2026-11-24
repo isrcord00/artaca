@@ -1,0 +1,64 @@
+---
+// =============================================================
+// Encabezado de navegación del sitio.
+// Menú responsive sin JavaScript: usamos un checkbox oculto
+// (patrón CSS-only con `peer-checked` de Tailwind).
+// =============================================================
+const enlaces = [
+  { texto: 'Inicio', ruta: '/' },
+  { texto: 'Nosotros', ruta: '/nosotros' },
+  { texto: 'Catálogo', ruta: '/catalogo' },
+  { texto: 'Noticias', ruta: '/noticias' },
+  { texto: 'Contacto', ruta: '/contacto' },
+];
+
+// Detectamos la ruta actual para resaltar el enlace activo
+const rutaActual = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="panel-cristal sticky top-0 z-50">
+  <div class="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+    <!-- Logo / nombre de la marca -->
+    <a href="/" class="font-display text-lg font-bold tracking-widest text-texto">
+      ARTESANÍA <span class="text-neon-cian texto-glow-cian">TAURO</span>
+    </a>
+
+    <!-- Interruptor del menú móvil (checkbox oculto) -->
+    <input type="checkbox" id="nav-interruptor" class="peer sr-only" />
+
+    <!-- Icono hamburguesa (solo visible en móvil) -->
+    <label
+      for="nav-interruptor"
+      aria-label="Abrir o cerrar el menú de navegación"
+      class="cursor-pointer text-2xl text-neon-cian md:hidden"
+    >
+      ☰
+    </label>
+
+    <!-- Navegación principal -->
+    <nav
+      class="absolute left-0 right-0 top-full hidden border-b border-borde bg-base/95 px-4 py-4 peer-checked:block md:static md:block md:border-0 md:bg-transparent md:px-0 md:py-0"
+      aria-label="Navegación principal"
+    >
+      <ul class="flex flex-col gap-3 md:flex-row md:items-center md:gap-8">
+        {
+          enlaces.map((enlace) => (
+            <li>
+              <a
+                href={enlace.ruta}
+                class:list={[
+                  'font-display text-sm tracking-[0.2em] uppercase transition-colors',
+                  rutaActual === enlace.ruta
+                    ? 'text-neon-cian texto-glow-cian'
+                    : 'text-texto-suave hover:text-neon-cian',
+                ]}
+              >
+                {enlace.texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

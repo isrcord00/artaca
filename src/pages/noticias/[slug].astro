@@ -1,0 +1,66 @@
+---
+// =============================================================
+// Página de cada entrada del blog — /noticias/[slug]/
+// Genera una página estática por cada archivo Markdown de noticias.
+// =============================================================
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+// Una página por cada entrada de la colección «noticias»
+export async function getStaticPaths() {
+  const entradas = await getCollection('noticias');
+  return entradas.map((entrada) => ({
+    params: { slug: entrada.id },
+    props: { entrada },
+  }));
+}
+
+const { entrada } = Astro.props;
+const { Content } = await render(entrada);
+
+// Formato de fecha en español (Venezuela)
+const formatoFecha = new Intl.DateTimeFormat('es-VE', { dateStyle: 'long' });
+---
+
+<Base
+  titulo={`${entrada.data.titulo} | Noticias Artesanía Tauro, C.A.`}
+  descripcion={entrada.data.descripcion}
+>
+  <article class="mx-auto max-w-3xl px-4 py-16">
+    <!-- Ruta de navegación (breadcrumb simple) -->
+    <nav class="text-sm text-texto-suave" aria-label="Ruta de navegación">
+      <a href="/noticias/" class="hover:text-neon-cian">Noticias</a>
+      <span aria-hidden="true"> / </span>
+      <span class="text-texto">{entrada.data.titulo}</span>
+    </nav>
+
+    <!-- Encabezado de la entrada -->
+    <header class="mt-6">
+      <div class="flex flex-wrap items-center gap-3 text-xs">
+        {
+          entrada.data.etiqueta && (
+            <span class="font-display rounded-full border border-neon-magenta/50 px-3 py-1 tracking-[0.15em] text-neon-magenta uppercase">
+              {entrada.data.etiqueta}
+            </span>
+          )
+        }
+        <time datetime={entrada.data.fecha.toISOString()} class="text-texto-suave">
+          {formatoFecha.format(entrada.data.fecha)}
+        </time>
+      </div>
+      <h1 class="mt-4 font-display text-2xl font-bold uppercase leading-tight md:text-4xl">
+        {entrada.data.titulo}
+      </h1>
+    </header>
+
+    <!-- Cuerpo de la entrada (Markdown renderizado) -->
+    <div class="contenido-noticia mt-8">
+      <Content />
+    </div>
+
+    <!-- Volver al listado -->
+    <p class="mt-12 border-t border-borde pt-6">
+      <a href="/noticias/" class="text-neon-cian">← Volver a todas las noticias</a>
+    </p>
+  </article>
+</Base>

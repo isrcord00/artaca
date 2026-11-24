@@ -1,0 +1,24 @@
+---
+// =============================================================
+// Botón / enlace reutilizable con estilo Dark Neon.
+// Props:
+//   - texto:    etiqueta visible del botón
+//   - href:     destino del enlace (si se omite, se renderiza <button>)
+//   - variante: 'neon' (relleno cian con glow) | 'fantasma' (borde magenta)
+// =============================================================
+const { texto, href, variante = 'neon' } = Astro.props;
+
+const clases = variante === 'fantasma' ? 'boton-fantasma' : 'boton-neon';
+---
+
+{
+  href ? (
+    <a href={href} class={clases}>
+      {texto}
+    </a>
+  ) : (
+    <button type="button" class={clases}>
+      {texto}
+    </button>
+  )
+}

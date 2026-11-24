@@ -1,0 +1,93 @@
+[
+  {
+    "id": "alpargata-clasica",
+    "nombre": "Alpargata Clásica",
+    "categoria": "Alpargatas",
+    "descripcion": "Calzado tejido a mano en hilo de algodón con suela de goma. Cómoda, fresca y versátil para el uso diario.",
+    "destacado": true
+  },
+  {
+    "id": "alpargata-plataforma",
+    "nombre": "Alpargata Plataforma",
+    "categoria": "Alpargatas",
+    "descripcion": "Diseño con plataforma y puntera reforzada. Tejido en colores combinables para looks urbanos.",
+    "destacado": false
+  },
+  {
+    "id": "alpargata-nina",
+    "nombre": "Alpargata Niña",
+    "categoria": "Alpargatas",
+    "descripcion": "Tallas para las más pequeñas, con tejido suave y colores vivos. Ideal para uniformes y recreo.",
+    "destacado": false
+  },
+  {
+    "id": "alpargata-faja-alta",
+    "nombre": "Alpargata Faja Alta",
+    "categoria": "Alpargatas",
+    "descripcion": "Corte alto con cordones cruzados en la canilla. Mayor soporte al tobillo y estilo clásico.",
+    "destacado": false
+  },
+  {
+    "id": "cocuiza-tradicional",
+    "nombre": "Cocuiza Tradicional",
+    "categoria": "Cocuizas",
+    "descripcion": "Elaborada en fibra de cocuiza trenzada. Resistente, de estilo rústico venezolano e ideal para trabajo de campo.",
+    "destacado": true
+  },
+  {
+    "id": "cocuiza-dama",
+    "nombre": "Cocuiza Dama",
+    "categoria": "Cocuizas",
+    "descripcion": "Versión femenina en cocuiza con detalles tejidos a contraste. Ligera y de larga duración.",
+    "destacado": false
+  },
+  {
+    "id": "cocuiza-puntera-cuero",
+    "nombre": "Cocuiza Puntera de Cuero",
+    "categoria": "Cocuizas",
+    "descripcion": "Combina el tejido de cocuiza con puntera y talón de cuero curtido. Máxima durabilidad.",
+    "destacado": false
+  },
+  {
+    "id": "bolso-tejido-flores",
+    "nombre": "Bolso Tejido Flores",
+    "categoria": "Bolsos",
+    "descripcion": "Bolso artesanal tejido a crochet con motivos florales. Cierre con cordón y correa ajustable.",
+    "destacado": true
+  },
+  {
+    "id": "bolso-cruzado",
+    "nombre": "Bolso Cruzado",
+    "categoria": "Bolsos",
+    "descripcion": "Bolso Bandolera tejido a mano con correa larga. Práctico para el diario y hecho para durar.",
+    "destacado": false
+  },
+  {
+    "id": "cartera-tejida",
+    "nombre": "Cartera Tejida",
+    "categoria": "Bolsos",
+    "descripcion": "Cartera pequeña tejida a mano con forro interior. Perfecta como accesorio de regalo.",
+    "destacado": false
+  },
+  {
+    "id": "morral-artesanal",
+    "nombre": "Morral Artesanal",
+    "categoria": "Bolsos",
+    "descripcion": "Morral espacioso en fibra natural con compartimento interno. Para el día a día o excursiones.",
+    "destacado": false
+  },
+  {
+    "id": "monedero-tejido",
+    "nombre": "Monedero Tejido",
+    "categoria": "Accesorios",
+    "descripcion": "Monedero tejido a mano con cierre metálico. Detalle artesanal para regalar.",
+    "destacado": false
+  },
+  {
+    "id": "llavero-tejido",
+    "nombre": "Llavero Tejido",
+    "categoria": "Accesorios",
+    "descripcion": "Llaveros tejidos en varios colores y diseños. Excelente opción para ventas corporativas al mayor.",
+    "destacado": false
+  }
+]

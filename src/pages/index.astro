@@ -1,0 +1,126 @@
+---
+// =============================================================
+// Página de inicio del sitio demo de Artesanía Tauro, C.A.
+// Secciones: hero + productos destacados + llamada a contacto.
+// Incluye datos estructurados (JSON-LD) de la empresa para SEO.
+// =============================================================
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import TarjetaProducto from '../components/TarjetaProducto.astro';
+import BotonNeon from '../components/BotonNeon.astro';
+// Catálogo de ejemplo; el definitivo llegará con las fotos del cliente
+import productos from '../data/productos.json';
+
+// Mostramos solo los productos marcados como destacados
+const destacados = productos.filter((producto) => producto.destacado);
+
+// -------------------------------------------------------------
+// Datos estructurados schema.org (JSON-LD): ayudan a Google a
+// mostrar la ficha de la empresa en resultados de búsqueda.
+// ⚠️ PENDIENTE: confirmar datos (horario, WhatsApp) con el cliente.
+// -------------------------------------------------------------
+const datosEmpresa = {
+  '@context': 'https://schema.org',
+  '@type': 'ShoeStore',
+  name: 'Artesanía Tauro, C.A.',
+  description:
+    'Venta al mayor y detal de calzado tejido artesanal: alpargatas, cocuizas y bolsos hechos a mano en Barquisimeto, Venezuela.',
+  telephone: '+582514468866',
+  email: 'artesania_tauro@hotmail.com',
+  url: Astro.site?.href,
+  sameAs: ['https://www.facebook.com/ArtesaniaTauroCa'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Carrera 24 entre Calles 41 y 42, Edificio La Alpargata',
+    addressLocality: 'Barquisimeto',
+    addressRegion: 'Lara',
+    postalCode: '3001',
+    addressCountry: 'VE',
+  },
+};
+---
+
+<Base
+  titulo="Artesanía Tauro, C.A. | Calzado tejido artesanal en Barquisimeto"
+  descripcion="Venta al mayor y detal de alpargatas, cocuizas y bolsos tejidos a mano. Artesanía Tauro, C.A. — Barquisimeto, Lara, Venezuela."
+>
+  <!-- Datos estructurados para buscadores -->
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(datosEmpresa)}
+  />
+
+  <Hero />
+
+  <!-- Productos destacados -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="font-display text-2xl font-bold uppercase md:text-3xl">
+      Productos <span class="text-neon-cian texto-glow-cian">destacados</span>
+    </h2>
+    <p class="mt-2 text-texto-suave">
+      Una muestra de nuestro trabajo artesanal. Catálogo completo disponible al mayoreo y detal.
+    </p>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {destacados.map((producto) => <TarjetaProducto producto={producto} />)}
+    </div>
+
+    <div class="mt-10 text-center">
+      <BotonNeon texto="Ver catálogo completo" href="/catalogo/" variante="neon" />
+    </div>
+  </section>
+
+  <!-- Últimas noticias -->
+  <section class="border-y border-borde bg-superficie">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="font-display text-2xl font-bold uppercase md:text-3xl">
+        Últimas <span class="text-neon-magenta texto-glow-magenta">noticias</span>
+      </h2>
+      <p class="mt-2 text-texto-suave">
+        Novedades del taller, colecciones y consejos de cuidado.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <article class="panel-cristal rounded-xl p-6">
+          <p class="font-display text-xs tracking-[0.2em] text-neon-magenta uppercase">Colecciones</p>
+          <h3 class="mt-3 text-lg font-semibold">Nueva colección de alpargatas 2026</h3>
+          <a href="/noticias/nueva-coleccion-alpargatas-2026/" class="mt-4 inline-block text-sm text-neon-cian">
+            Leer más →
+          </a>
+        </article>
+        <article class="panel-cristal rounded-xl p-6">
+          <p class="font-display text-xs tracking-[0.2em] text-neon-magenta uppercase">Consejos</p>
+          <h3 class="mt-3 text-lg font-semibold">Cómo cuidar tus cocuizas</h3>
+          <a href="/noticias/como-cuidar-tus-cocuizas/" class="mt-4 inline-block text-sm text-neon-cian">
+            Leer más →
+          </a>
+        </article>
+        <article class="panel-cristal rounded-xl p-6">
+          <p class="font-display text-xs tracking-[0.2em] text-neon-magenta uppercase">Eventos</p>
+          <h3 class="mt-3 text-lg font-semibold">Expo Artesanía Lara 2026</h3>
+          <a href="/noticias/expo-artesania-lara-2026/" class="mt-4 inline-block text-sm text-neon-cian">
+            Leer más →
+          </a>
+        </article>
+      </div>
+      <div class="mt-8 text-center">
+        <BotonNeon texto="Ver todas las noticias" href="/noticias/" variante="fantasma" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Banda de llamada a la acción para ventas al mayor -->
+  <section class="mx-auto max-w-4xl px-4 py-16 text-center">
+    <h2 class="font-display text-2xl font-bold uppercase md:text-3xl">
+      ¿Comercio o <span class="text-neon-magenta texto-glow-magenta">tienda</span>?
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl text-texto-suave">
+      Trabajamos pedidos al mayor para revendedores y tiendas de todo el país.
+      Escríbenos para conocer precios y disponibilidad.
+    </p>
+    <div class="mt-8">
+      <BotonNeon texto="Solicitar información al mayor" href="/contacto/" variante="fantasma" />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,104 @@
+---
+// =============================================================
+// Página de detalle de producto — /catalogo/[id]/
+// Genera una página estática por cada producto del catálogo.
+// =============================================================
+import Base from '../../layouts/Base.astro';
+import TarjetaProducto from '../../components/TarjetaProducto.astro';
+import BotonNeon from '../../components/BotonNeon.astro';
+import productos from '../../data/productos.json';
+
+// Una página por cada producto definido en productos.json
+export function getStaticPaths() {
+  return productos.map((producto) => ({
+    params: { id: producto.id },
+    props: { producto },
+  }));
+}
+
+const { producto } = Astro.props;
+
+// Productos relacionados: misma categoría, excluyendo el actual (máx. 3)
+const relacionados = productos
+  .filter((p) => p.categoria === producto.categoria && p.id !== producto.id)
+  .slice(0, 3);
+
+// Degradado del placeholder visual según la categoría
+const degradados = {
+  Alpargatas: 'from-neon-cian/30 to-neon-violeta/30',
+  Cocuizas: 'from-neon-magenta/30 to-neon-violeta/30',
+  Bolsos: 'from-neon-violeta/30 to-neon-cian/30',
+  Accesorios: 'from-neon-cian/20 to-neon-magenta/30',
+};
+const degradado = degradados[producto.categoria] ?? degradados['Accesorios'];
+---
+
+<Base
+  titulo={`${producto.nombre} | Catálogo Artesanía Tauro, C.A.`}
+  descripcion={`${producto.descripcion} Venta al mayor y detal — Artesanía Tauro, C.A., Barquisimeto.`}
+>
+  <!-- Ruta de navegación (breadcrumb simple) -->
+  <nav class="mx-auto max-w-6xl px-4 pt-8 text-sm text-texto-suave" aria-label="Ruta de navegación">
+    <a href="/catalogo/" class="hover:text-neon-cian">Catálogo</a>
+    <span aria-hidden="true"> / </span>
+    <span class="text-texto">{producto.nombre}</span>
+  </nav>
+
+  <!-- Detalle del producto -->
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 py-12 lg:grid-cols-2">
+    <!-- Placeholder visual grande (reemplazar por foto real del producto) -->
+    <div class={`flex h-96 items-center justify-center rounded-xl bg-linear-to-br ${degradado}`}>
+      <span class="font-display px-6 text-center text-3xl font-bold uppercase tracking-widest text-texto/70">
+        {producto.nombre}
+      </span>
+    </div>
+
+    <!-- Información y compra -->
+    <div>
+      <p class="font-display text-xs tracking-[0.3em] text-neon-magenta uppercase">
+        {producto.categoria}
+      </p>
+      <h1 class="mt-3 font-display text-3xl font-bold uppercase md:text-4xl">
+        {producto.nombre}
+      </h1>
+      <p class="mt-5 leading-relaxed text-texto-suave">{producto.descripcion}</p>
+
+      <dl class="mt-6 space-y-3 text-sm">
+        <div class="flex gap-2">
+          <dt class="font-display text-neon-cian uppercase">Modalidad:</dt>
+          <dd class="text-texto-suave">Al mayor y detal</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="font-display text-neon-cian uppercase">Precio:</dt>
+          <dd class="text-texto-suave">A consultar según cantidad</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="font-display text-neon-cian uppercase">Elaboración:</dt>
+          <dd class="text-texto-suave">100 % tejido a mano</dd>
+        </div>
+      </dl>
+
+      <!-- Llamadas a la acción -->
+      <div class="mt-8 flex flex-wrap gap-4">
+        <BotonNeon texto="Pedir por contacto" href="/contacto/" variante="neon" />
+        <BotonNeon texto="Volver al catálogo" href="/catalogo/" variante="fantasma" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos relacionados -->
+  {
+    relacionados.length > 0 && (
+      <section class="mx-auto max-w-6xl px-4 pb-20">
+        <h2 class="font-display text-xl font-bold uppercase">
+          También te puede <span class="text-neon-cian texto-glow-cian">interesar</span>
+        </h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {relacionados.map((relacionado) => (
+            <TarjetaProducto producto={relacionado} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>

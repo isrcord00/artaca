@@ -1,0 +1,39 @@
+---
+// =============================================================
+// Hero de la página de inicio: presentación principal de la marca.
+// =============================================================
+---
+
+<!-- Sección hero con rejilla neón de fondo y halo violeta decorativo -->
+<section class="fondo-rejilla relative overflow-hidden">
+  <!-- Halo de color difuso (decorativo, no accesible) -->
+  <div
+    class="pointer-events-none absolute -top-24 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-neon-violeta/20 blur-[120px]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-24 text-center md:py-32">
+    <!-- Antetítulo -->
+    <p class="font-display text-sm tracking-[0.35em] text-neon-magenta uppercase">
+      Calzado tejido artesanal · Barquisimeto, Venezuela
+    </p>
+
+    <!-- Título principal con degradado de marca -->
+    <h1 class="mt-4 font-display text-4xl font-bold uppercase md:text-6xl">
+      <span class="texto-degradado">Artesanía Tauro</span>
+    </h1>
+
+    <!-- Propuesta de valor -->
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-texto-suave">
+      Alpargatas, cocuizas y bolsos tejidos a mano. Venta al mayor y detal con la
+      calidad y el detalle de la artesanía venezolana.
+    </p>
+
+    <!-- Llamadas a la acción -->
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="/catalogo" class="boton-neon">Ver catálogo</a>
+      <a href="/contacto" class="boton-fantasma">Contáctanos</a>
+    </div>
+  </div>
+</section>
