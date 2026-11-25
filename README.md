@@ -46,6 +46,25 @@ npm run build
 npm run preview
 ```
 
+## Gestor de contenidos (para el cliente)
+
+El dueño del negocio puede agregar **productos** y **noticias** sin tocar
+código, desde una herramienta de consola con preguntas guiadas:
+
+```bash
+pip install -r herramientas/requirements.txt   # solo la primera vez
+
+python herramientas/gestor.py alta-producto    # agrega un producto con foto optimizada
+python herramientas/gestor.py alta-noticia     # agrega una noticia al blog
+python herramientas/gestor.py listar           # ver el contenido publicado
+python herramientas/gestor.py validar          # revisar consistencia de datos
+python herramientas/gestor.py publicar         # commit + push → sitio actualizado
+```
+
+La herramienta recorta y comprime las fotos automáticamente, genera portadas
+decorativas si la noticia no tiene imagen y valida todo antes de publicar.
+Guía completa en [`herramientas/README.md`](./herramientas/README.md).
+
 ## Estructura del proyecto
 
 ```
@@ -76,6 +95,10 @@ artesania-tauro/
 │   │   └── 404.astro        # Página de error personalizada
 │   └── styles/
 │       └── global.css       # Tokens Dark Neon + utilidades de marca
+├── herramientas/            # Gestor de contenidos para el cliente (Python)
+│   ├── gestor.py            # CLI: alta-producto, alta-noticia, listar, validar, publicar
+│   ├── requirements.txt     # Dependencias (Pillow)
+│   └── README.md            # Guía de uso paso a paso
 ├── astro.config.mjs
 └── package.json
 ```
@@ -95,10 +118,12 @@ artesania-tauro/
 - [x] **F6** — Git inicializado + guía de despliegue ([`DEPLOY.md`](./DEPLOY.md))
 - [x] **F7** — QA: build de 22 páginas y verificación de enlaces internos
 - [x] **F8** — Propuesta comercial (`../propuesta-cliente.md`)
+- [x] **F9** — Gestor de contenidos para el cliente (`herramientas/gestor.py`)
+  con alta de productos/noticias, optimización de imágenes y publicación.
 
-**Pendiente del usuario:** crear la clave Web3Forms, subir a GitHub,
-desplegar en Cloudflare Pages (pasos en `DEPLOY.md`) y confirmar datos del
-cliente (WhatsApp, horarios, fotos reales).
+**Pendiente:** verificar el formulario desde el navegador (el plan gratuito de
+Web3Forms no admite pruebas automáticas) y confirmar datos del cliente
+(WhatsApp, horarios, fotos reales en lugar de las provisionales).
 
 ## Convenciones
 

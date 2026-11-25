@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# gestor de contenidos (python)
+__pycache__/
+*.pyc
