@@ -3,6 +3,11 @@
 Puesta en línea del sitio **Artesanía Tauro, C.A.** sin costo, con HTTPS
 y dominio demo incluido. Tiempo estimado: **15 minutos**.
 
+> **Estado:** ✅ desplegado en **https://artaca.isrcordigital.top** — se usó el
+> flujo nuevo **Workers Builds** (config en `wrangler.jsonc`, assets estáticos)
+> con un dominio propio administrado en Cloudflare. La guía clásica de Pages
+> aquí abajo sigue siendo válida como alternativa.
+
 ---
 
 ## Paso 1 — Subir el código a GitHub ✅ (hecho)
