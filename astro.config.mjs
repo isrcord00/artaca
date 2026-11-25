@@ -11,9 +11,9 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // URL pública del sitio (subdominio demo de Cloudflare Pages;
+  // URL pública del sitio (dominio propio administrado en Cloudflare;
   // se actualizará al dominio final cuando el cliente lo contrate)
-  site: 'https://artaca.pages.dev',
+  site: 'https://artaca.isrcordigital.top',
 
   // Integraciones: sitemap.xml automático para buscadores
   integrations: [sitemap()],
