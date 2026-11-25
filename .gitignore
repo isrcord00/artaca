@@ -26,3 +26,5 @@ pnpm-debug.log*
 # gestor de contenidos (python)
 __pycache__/
 *.pyc
+
+subir.sh
