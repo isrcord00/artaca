@@ -1,0 +1,16 @@
+// =============================================================
+// Configuración de Cloudflare Workers (sitio estático)
+// Para el flujo nuevo «Workers Builds» del panel de Cloudflare:
+//   - Build command:  npm run build
+//   - Deploy command: npx wrangler deploy
+// Los archivos generados en dist/ se publican como assets estáticos.
+// =============================================================
+{
+  "name": "artaca",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
